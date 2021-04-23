@@ -19,7 +19,14 @@ args = parser.parse_args()
 pc_settings = pc_lib_general.pc_login_get(args.username, args.password, args.uiurl, args.config_file)
 
 # Verification (override with -y)
-pc_lib_general.prompt_for_verification_to_continue(args.yes)
+if not args.yes:
+    print()
+    print('Ready to execute commands against your Prisma Cloud tenant.')
+    verification_response = str(input('Would you like to continue (y or yes to continue)?'))
+    continue_response = {'yes', 'y'}
+    print()
+    if verification_response not in continue_response:
+        pc_lib_general.pc_exit_error(400, 'Verification failed due to user response.  Exiting...')
 
 # Sort out API Login
 print('API - Getting authentication token...', end='')

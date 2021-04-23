@@ -629,15 +629,3 @@ def api_access_key_delete(pc_settings, access_key_to_delete):
     action = "DELETE"
     url = "https://" + pc_settings['apiBase'] + "/access_keys/" + access_key_to_delete
     return pc_call_api(action, url, pc_settings)
-
-"""
-  Health Check Endpoint
-
-[x] GET
-"""
-# Get Health Check Output
-def api_system_health_check(pc_settings):
-    action = "GET"
-    url = "https://" + pc_settings['apiBase'] + "/check"
-    return pc_call_api(action, url, pc_settings)
-
