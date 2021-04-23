@@ -188,6 +188,7 @@ Additional:
 [x] LIST v2
 [x] LIST v2 where custom
 [x] UPDATE status
+[x] LIST POLICY FILTERS
 """
 
 
@@ -238,6 +239,12 @@ def api_policy_delete(pc_settings, policy_id):
     action = "DELETE"
     url = "https://" + pc_settings['apiBase'] + "/policy/" + policy_id
     return pc_call_api(action, url, pc_settings)
+
+def api_policy_list_policy_filters_get(pc_settings):
+    action = "GET"
+    url = "https://" + pc_settings['apiBase'] + "/filter/policy/suggest"
+    return pc_call_api(action, url, pc_settings)
+
 
 """
   Search
@@ -296,6 +303,11 @@ def api_user_role_list_get(pc_settings):
     return pc_call_api(action, url, pc_settings)
 
 
+def api_user_role_names_list(pc_settings):
+    action = "GET"
+    url = "https://" + pc_settings['apiBase'] + "/user/role/names"
+    return pc_call_api(action, url, pc_settings)
+
 def api_user_role_add(pc_settings, user_role_to_add):
     action = "POST"
     url = "https://" + pc_settings['apiBase'] + "/user/role"
@@ -329,6 +341,9 @@ def api_user_role_delete(pc_settings, account_id):
 [ ] DELETE/REMOVE
 Additional:
 [x] LIST v2
+[x] LIST USER EMAIL DOMAINS
+[x] LIST SSO EXCEPTION USERS
+[x] LIST ROLE TYPES
 """
 
 def api_user_list_get(pc_settings):
@@ -359,6 +374,26 @@ def api_user_update(pc_settings, user_to_update):
     action = "PUT"
     url = "https://" + pc_settings['apiBase'] + "/user/" + user_to_update['email']
     return pc_call_api(action, url, pc_settings, data=user_to_update)
+
+
+def api_user_email_domains_list_get(pc_settings):
+    action = "GET"
+    url = "https://" + pc_settings['apiBase'] + "/user/domain"
+    return pc_call_api(action, url, pc_settings)
+
+
+# List SSO Bypass Allowed Users
+def api_user_list_sso_bypass_allowed_users_get(pc_settings):
+    action = "GET"
+    url = "https://" + pc_settings['apiBase'] + "/user/saml/bypass"
+    return pc_call_api(action, url, pc_settings)
+
+
+# List user role types (groups to which a user can belong)
+def api_user_role_types_list_get(pc_settings):
+    action = "GET"
+    url = "https://" + pc_settings['apiBase'] + "/user/role/type"
+    return pc_call_api(action, url, pc_settings)
 
 
 """
@@ -629,3 +664,15 @@ def api_access_key_delete(pc_settings, access_key_to_delete):
     action = "DELETE"
     url = "https://" + pc_settings['apiBase'] + "/access_keys/" + access_key_to_delete
     return pc_call_api(action, url, pc_settings)
+
+"""
+  Health Check Endpoint
+
+[x] GET
+"""
+# Get Health Check Output
+def api_system_health_check(pc_settings):
+    action = "GET"
+    url = "https://" + pc_settings['apiBase'] + "/check"
+    return pc_call_api(action, url, pc_settings)
+
