@@ -168,7 +168,7 @@ try:
 
     print("Alert rules returned...", file=stderr)
     for rule in export_object['rules']:
-       print("  %s %s" % (rule['policyScanConfigId'], rule['name']), file=stderr)
+        print("  %s %s" % (rule['policyScanConfigId'], rule['name']), file=stderr)
 
     print("Exporting policies...", file=stderr)
     export_object['policies'] = pc_api.policy_v2_list_read()
