@@ -214,5 +214,23 @@ except it uses the Cloud Workload Protection API rather than the Cloud Security 
 
 Reference: https://prisma.pan.dev/api/cloud/cwpp
  
+**pcs_posture_export.py**
 
+Warning: This is a work in progress
+This is a one-stop-shop for capturing configuration.
 
+Example 1: Output to timestamp named file with pretty output 
+
+```
+python pcs_posture_export.py `date '+%s'`.json --pretty
+```
+
+Example 2: Output to stdout, capture inline to output.json and parse via jq
+
+```
+python pcs_posture_export.py - | tee output.json | jq '.'
+```
+
+TODO:
+1) Build one-stop import script
+2) Expand depth of capture of anomaly and trusted settings
